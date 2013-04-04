@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'CRFPagingController' target in the 'CRFPagingController' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
