@@ -10,6 +10,35 @@
 		0D9519D6170D1B44009CE065 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9519D5170D1B44009CE065 /* Foundation.framework */; };
 		0D9519DB170D1B44009CE065 /* CRFPagingController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0D9519DA170D1B44009CE065 /* CRFPagingController.h */; };
 		0D9519DD170D1B44009CE065 /* CRFPagingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9519DC170D1B44009CE065 /* CRFPagingController.m */; };
+		0D9519EC170D1D15009CE065 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9519EB170D1D15009CE065 /* UIKit.framework */; };
+		0D9519ED170D1D15009CE065 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9519D5170D1B44009CE065 /* Foundation.framework */; };
+		0D9519EF170D1D15009CE065 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9519EE170D1D15009CE065 /* CoreGraphics.framework */; };
+		0D9519F5170D1D15009CE065 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D9519F3170D1D15009CE065 /* InfoPlist.strings */; };
+		0D9519F7170D1D15009CE065 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9519F6170D1D15009CE065 /* main.m */; };
+		0D9519FB170D1D15009CE065 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9519FA170D1D15009CE065 /* AppDelegate.m */; };
+		0D9519FD170D1D15009CE065 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9519FC170D1D15009CE065 /* Default.png */; };
+		0D9519FF170D1D15009CE065 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9519FE170D1D15009CE065 /* Default@2x.png */; };
+		0D951A01170D1D15009CE065 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D951A00170D1D15009CE065 /* Default-568h@2x.png */; };
+		0D951A05170D1D85009CE065 /* CRFPagingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9519DC170D1B44009CE065 /* CRFPagingController.m */; };
+		0DC95EA6170D2AB800273124 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC95EA5170D2AB800273124 /* DataSource.m */; };
+		0DC95EB4170D2B4C00273124 /* china.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EA9170D2B4C00273124 /* china.png */; };
+		0DC95EB5170D2B4C00273124 /* denmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EAA170D2B4C00273124 /* denmark.png */; };
+		0DC95EB6170D2B4C00273124 /* greece.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EAB170D2B4C00273124 /* greece.png */; };
+		0DC95EB7170D2B4C00273124 /* israel.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EAC170D2B4C00273124 /* israel.png */; };
+		0DC95EB8170D2B4C00273124 /* italy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EAD170D2B4C00273124 /* italy.png */; };
+		0DC95EB9170D2B4C00273124 /* latvia.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EAE170D2B4C00273124 /* latvia.png */; };
+		0DC95EBA170D2B4C00273124 /* netherlands.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EAF170D2B4C00273124 /* netherlands.png */; };
+		0DC95EBB170D2B4C00273124 /* norway.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EB0170D2B4C00273124 /* norway.png */; };
+		0DC95EBC170D2B4C00273124 /* switzerland.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EB1170D2B4C00273124 /* switzerland.png */; };
+		0DC95EBD170D2B4C00273124 /* taiwan.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EB2170D2B4C00273124 /* taiwan.png */; };
+		0DC95EBE170D2B4C00273124 /* venezuela.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EB3170D2B4C00273124 /* venezuela.png */; };
+		0DC95EC1170D2B9100273124 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC95EC0170D2B9100273124 /* Person.m */; };
+		0DC95EC4170D329600273124 /* uk.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EC2170D329600273124 /* uk.png */; };
+		0DC95EC5170D329600273124 /* us.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EC3170D329600273124 /* us.png */; };
+		0DC95EC7170D32E500273124 /* canada.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EC6170D32E500273124 /* canada.png */; };
+		0DC95EC9170D333000273124 /* india.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC95EC8170D333000273124 /* india.png */; };
+		0DF36322170D79B70029BB44 /* CRFPagingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF36321170D79B70029BB44 /* CRFPagingCellView.m */; };
+		0DF36323170D79B70029BB44 /* CRFPagingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF36321170D79B70029BB44 /* CRFPagingCellView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,9 +57,42 @@
 /* Begin PBXFileReference section */
 		0D9519D2170D1B44009CE065 /* libCRFPagingController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCRFPagingController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D9519D5170D1B44009CE065 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		0D9519D9170D1B44009CE065 /* CRFPagingController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CRFPagingController-Prefix.pch"; sourceTree = "<group>"; };
 		0D9519DA170D1B44009CE065 /* CRFPagingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRFPagingController.h; sourceTree = "<group>"; };
 		0D9519DC170D1B44009CE065 /* CRFPagingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRFPagingController.m; sourceTree = "<group>"; };
+		0D9519E4170D1CA7009CE065 /* CRFPagingController-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CRFPagingController-Prefix.pch"; sourceTree = "<group>"; };
+		0D9519E9170D1D15009CE065 /* CRFPagingControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRFPagingControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D9519EB170D1D15009CE065 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0D9519EE170D1D15009CE065 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0D9519F2170D1D15009CE065 /* CRFPagingControllerDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CRFPagingControllerDemo-Info.plist"; sourceTree = "<group>"; };
+		0D9519F4170D1D15009CE065 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0D9519F6170D1D15009CE065 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0D9519F8170D1D15009CE065 /* CRFPagingControllerDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CRFPagingControllerDemo-Prefix.pch"; sourceTree = "<group>"; };
+		0D9519F9170D1D15009CE065 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0D9519FA170D1D15009CE065 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0D9519FC170D1D15009CE065 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		0D9519FE170D1D15009CE065 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		0D951A00170D1D15009CE065 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		0DC95EA4170D2AB800273124 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		0DC95EA5170D2AB800273124 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		0DC95EA9170D2B4C00273124 /* china.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = china.png; sourceTree = "<group>"; };
+		0DC95EAA170D2B4C00273124 /* denmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = denmark.png; sourceTree = "<group>"; };
+		0DC95EAB170D2B4C00273124 /* greece.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greece.png; sourceTree = "<group>"; };
+		0DC95EAC170D2B4C00273124 /* israel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = israel.png; sourceTree = "<group>"; };
+		0DC95EAD170D2B4C00273124 /* italy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = italy.png; sourceTree = "<group>"; };
+		0DC95EAE170D2B4C00273124 /* latvia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = latvia.png; sourceTree = "<group>"; };
+		0DC95EAF170D2B4C00273124 /* netherlands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = netherlands.png; sourceTree = "<group>"; };
+		0DC95EB0170D2B4C00273124 /* norway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = norway.png; sourceTree = "<group>"; };
+		0DC95EB1170D2B4C00273124 /* switzerland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switzerland.png; sourceTree = "<group>"; };
+		0DC95EB2170D2B4C00273124 /* taiwan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taiwan.png; sourceTree = "<group>"; };
+		0DC95EB3170D2B4C00273124 /* venezuela.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = venezuela.png; sourceTree = "<group>"; };
+		0DC95EBF170D2B9100273124 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		0DC95EC0170D2B9100273124 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		0DC95EC2170D329600273124 /* uk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uk.png; sourceTree = "<group>"; };
+		0DC95EC3170D329600273124 /* us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = us.png; sourceTree = "<group>"; };
+		0DC95EC6170D32E500273124 /* canada.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = canada.png; sourceTree = "<group>"; };
+		0DC95EC8170D333000273124 /* india.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = india.png; sourceTree = "<group>"; };
+		0DF36320170D79B70029BB44 /* CRFPagingCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFPagingCellView.h; sourceTree = "<group>"; };
+		0DF36321170D79B70029BB44 /* CRFPagingCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFPagingCellView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +104,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0D9519E6170D1D15009CE065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D9519EC170D1D15009CE065 /* UIKit.framework in Frameworks */,
+				0D9519ED170D1D15009CE065 /* Foundation.framework in Frameworks */,
+				0D9519EF170D1D15009CE065 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -49,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				0D9519D7170D1B44009CE065 /* CRFPagingController */,
+				0D9519E3170D1CA7009CE065 /* CRFPagingControllerLib */,
+				0D9519F0170D1D15009CE065 /* CRFPagingControllerDemo */,
 				0D9519D4170D1B44009CE065 /* Frameworks */,
 				0D9519D3170D1B44009CE065 /* Products */,
 			);
@@ -58,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				0D9519D2170D1B44009CE065 /* libCRFPagingController.a */,
+				0D9519E9170D1D15009CE065 /* CRFPagingControllerDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				0D9519D5170D1B44009CE065 /* Foundation.framework */,
+				0D9519EB170D1D15009CE065 /* UIKit.framework */,
+				0D9519EE170D1D15009CE065 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -73,19 +150,71 @@
 		0D9519D7170D1B44009CE065 /* CRFPagingController */ = {
 			isa = PBXGroup;
 			children = (
+				0DF36320170D79B70029BB44 /* CRFPagingCellView.h */,
+				0DF36321170D79B70029BB44 /* CRFPagingCellView.m */,
 				0D9519DA170D1B44009CE065 /* CRFPagingController.h */,
 				0D9519DC170D1B44009CE065 /* CRFPagingController.m */,
-				0D9519D8170D1B44009CE065 /* Supporting Files */,
 			);
 			path = CRFPagingController;
 			sourceTree = "<group>";
 		};
-		0D9519D8170D1B44009CE065 /* Supporting Files */ = {
+		0D9519E3170D1CA7009CE065 /* CRFPagingControllerLib */ = {
 			isa = PBXGroup;
 			children = (
-				0D9519D9170D1B44009CE065 /* CRFPagingController-Prefix.pch */,
+				0D9519E4170D1CA7009CE065 /* CRFPagingController-Prefix.pch */,
+			);
+			path = CRFPagingControllerLib;
+			sourceTree = "<group>";
+		};
+		0D9519F0170D1D15009CE065 /* CRFPagingControllerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				0D9519F9170D1D15009CE065 /* AppDelegate.h */,
+				0D9519FA170D1D15009CE065 /* AppDelegate.m */,
+				0DC95EA4170D2AB800273124 /* DataSource.h */,
+				0DC95EA5170D2AB800273124 /* DataSource.m */,
+				0DC95EBF170D2B9100273124 /* Person.h */,
+				0DC95EC0170D2B9100273124 /* Person.m */,
+				0D9519F1170D1D15009CE065 /* Supporting Files */,
+			);
+			path = CRFPagingControllerDemo;
+			sourceTree = "<group>";
+		};
+		0D9519F1170D1D15009CE065 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0DC95EA8170D2B4C00273124 /* flags */,
+				0D9519F2170D1D15009CE065 /* CRFPagingControllerDemo-Info.plist */,
+				0D9519F3170D1D15009CE065 /* InfoPlist.strings */,
+				0D9519F6170D1D15009CE065 /* main.m */,
+				0D9519F8170D1D15009CE065 /* CRFPagingControllerDemo-Prefix.pch */,
+				0D9519FC170D1D15009CE065 /* Default.png */,
+				0D9519FE170D1D15009CE065 /* Default@2x.png */,
+				0D951A00170D1D15009CE065 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0DC95EA8170D2B4C00273124 /* flags */ = {
+			isa = PBXGroup;
+			children = (
+				0DC95EC2170D329600273124 /* uk.png */,
+				0DC95EC3170D329600273124 /* us.png */,
+				0DC95EC6170D32E500273124 /* canada.png */,
+				0DC95EA9170D2B4C00273124 /* china.png */,
+				0DC95EAA170D2B4C00273124 /* denmark.png */,
+				0DC95EAB170D2B4C00273124 /* greece.png */,
+				0DC95EC8170D333000273124 /* india.png */,
+				0DC95EAC170D2B4C00273124 /* israel.png */,
+				0DC95EAD170D2B4C00273124 /* italy.png */,
+				0DC95EAE170D2B4C00273124 /* latvia.png */,
+				0DC95EAF170D2B4C00273124 /* netherlands.png */,
+				0DC95EB0170D2B4C00273124 /* norway.png */,
+				0DC95EB1170D2B4C00273124 /* switzerland.png */,
+				0DC95EB2170D2B4C00273124 /* taiwan.png */,
+				0DC95EB3170D2B4C00273124 /* venezuela.png */,
+			);
+			path = flags;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,6 +236,23 @@
 			productName = CRFPagingController;
 			productReference = 0D9519D2170D1B44009CE065 /* libCRFPagingController.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		0D9519E8170D1D15009CE065 /* CRFPagingControllerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D951A02170D1D15009CE065 /* Build configuration list for PBXNativeTarget "CRFPagingControllerDemo" */;
+			buildPhases = (
+				0D9519E5170D1D15009CE065 /* Sources */,
+				0D9519E6170D1D15009CE065 /* Frameworks */,
+				0D9519E7170D1D15009CE065 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CRFPagingControllerDemo;
+			productName = CRFPagingControllerDemo;
+			productReference = 0D9519E9170D1D15009CE065 /* CRFPagingControllerDemo.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -130,9 +276,39 @@
 			projectRoot = "";
 			targets = (
 				0D9519D1170D1B44009CE065 /* CRFPagingController */,
+				0D9519E8170D1D15009CE065 /* CRFPagingControllerDemo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0D9519E7170D1D15009CE065 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D9519F5170D1D15009CE065 /* InfoPlist.strings in Resources */,
+				0D9519FD170D1D15009CE065 /* Default.png in Resources */,
+				0D9519FF170D1D15009CE065 /* Default@2x.png in Resources */,
+				0D951A01170D1D15009CE065 /* Default-568h@2x.png in Resources */,
+				0DC95EB4170D2B4C00273124 /* china.png in Resources */,
+				0DC95EB5170D2B4C00273124 /* denmark.png in Resources */,
+				0DC95EB6170D2B4C00273124 /* greece.png in Resources */,
+				0DC95EB7170D2B4C00273124 /* israel.png in Resources */,
+				0DC95EB8170D2B4C00273124 /* italy.png in Resources */,
+				0DC95EB9170D2B4C00273124 /* latvia.png in Resources */,
+				0DC95EBA170D2B4C00273124 /* netherlands.png in Resources */,
+				0DC95EBB170D2B4C00273124 /* norway.png in Resources */,
+				0DC95EBC170D2B4C00273124 /* switzerland.png in Resources */,
+				0DC95EBD170D2B4C00273124 /* taiwan.png in Resources */,
+				0DC95EBE170D2B4C00273124 /* venezuela.png in Resources */,
+				0DC95EC4170D329600273124 /* uk.png in Resources */,
+				0DC95EC5170D329600273124 /* us.png in Resources */,
+				0DC95EC7170D32E500273124 /* canada.png in Resources */,
+				0DC95EC9170D333000273124 /* india.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0D9519CE170D1B44009CE065 /* Sources */ = {
@@ -140,10 +316,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D9519DD170D1B44009CE065 /* CRFPagingController.m in Sources */,
+				0DF36322170D79B70029BB44 /* CRFPagingCellView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D9519E5170D1D15009CE065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D9519F7170D1D15009CE065 /* main.m in Sources */,
+				0D9519FB170D1D15009CE065 /* AppDelegate.m in Sources */,
+				0D951A05170D1D85009CE065 /* CRFPagingController.m in Sources */,
+				0DC95EA6170D2AB800273124 /* DataSource.m in Sources */,
+				0DC95EC1170D2B9100273124 /* Person.m in Sources */,
+				0DF36323170D79B70029BB44 /* CRFPagingCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0D9519F3170D1D15009CE065 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D9519F4170D1D15009CE065 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0D9519DE170D1B44009CE065 /* Debug */ = {
@@ -197,7 +398,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/CRFPagingController.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CRFPagingController/CRFPagingController-Prefix.pch";
+				GCC_PREFIX_HEADER = "CRFPagingControllerLib/CRFPagingController-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -209,10 +410,35 @@
 			buildSettings = {
 				DSTROOT = /tmp/CRFPagingController.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CRFPagingController/CRFPagingController-Prefix.pch";
+				GCC_PREFIX_HEADER = "CRFPagingControllerLib/CRFPagingController-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		0D951A03170D1D15009CE065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CRFPagingControllerDemo/CRFPagingControllerDemo-Prefix.pch";
+				INFOPLIST_FILE = "CRFPagingControllerDemo/CRFPagingControllerDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0D951A04170D1D15009CE065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CRFPagingControllerDemo/CRFPagingControllerDemo-Prefix.pch";
+				INFOPLIST_FILE = "CRFPagingControllerDemo/CRFPagingControllerDemo-Info.plist";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -235,6 +461,16 @@
 				0D9519E2170D1B44009CE065 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D951A02170D1D15009CE065 /* Build configuration list for PBXNativeTarget "CRFPagingControllerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D951A03170D1D15009CE065 /* Debug */,
+				0D951A04170D1D15009CE065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
