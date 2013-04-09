@@ -41,7 +41,7 @@
 @property (nonatomic, strong) NSMutableArray * data;
 @property (nonatomic, strong) NSMutableArray * dataToLoad;
 
-- (void)load:(CRFPagingController *)dataSource;
-- (void)preload;
+- (NSRange)load;
+- (void)reset;
 
 @end

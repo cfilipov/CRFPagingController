@@ -30,7 +30,7 @@
 //  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-//  ////////////////////////////////////////////////////////////////////////////
+//  // // // // // // // // // // // // // // // // // // // // // // // // //
 //
 //  CRFPagingController adds paging functionality to UITableViews.
 //
@@ -71,31 +71,40 @@
 
 // IMPORTANT: You MUST set this property before setting the UITableView's
 // dataSource property.
-@property (nonatomic, weak) id<UITableViewDataSource> tableViewDataSource;
+@property (nonatomic, weak) IBOutlet id<UITableViewDataSource> tableViewDataSource;
 
 // IMPORTANT: You MUST set this property before setting the UITableView's
 // delegate property.
-@property (nonatomic, weak) id<UITableViewDelegate> tableViewDelegate;
+@property (nonatomic, weak) IBOutlet id<UITableViewDelegate> tableViewDelegate;
 
-// The delegate will be informated of requests to paginate data.
-@property (nonatomic, weak) id<CRFPagingControllerDelegate>  delegate;
+// The delegate will be informed of requests to paginate data.
+@property (nonatomic, weak) IBOutlet id<CRFPagingControllerDelegate>  delegate;
 
-// The number of rows to maintain ahead of the greatest currently visible index.
+// The minimum number of unviewed rows to maintain by pre-loading the next page.
 // For example: setting the buffer to 5 will cause the paging controller to
 // request the next page when there are 5 rows remaining to be displayed.
-// Default value is 0 (no buffer, user interaction required to load next page).
 //
-// Note: The buffer size must be  less than the page size.
-@property (nonatomic, assign) NSUInteger buffer;
+// The default value is 0.
+//
+// This setting has no effect if autoLoad is set to NO.
+//
+// Note: If the buffer size is less than the size of a page, page loads will be
+// requested until the buffer is filled or until there are no more pages.
+@property (nonatomic, assign) NSUInteger bufferSize;
+
+// If set to YES, then the next page will be loaded immediately when the data
+// becomes available. Otherwise data will be loaded after selecting the trigger
+// cell.
+@property (nonatomic, assign) BOOL autoLoad;
 
 // Customize the trigger cell ("more button") appearance. Trigger cells must
 // conform to the CRFPagingCell protocol.
-@property (nonatomic, strong) UITableViewCell<CRFPagingCell> * triggerCell;
+@property (nonatomic, strong) IBOutlet UITableViewCell<CRFPagingCell> * triggerCell;
 
 // The UITableView for which this instance is delegating.
-@property (nonatomic, weak) UITableView * tableView;
+@property (nonatomic, weak) IBOutlet UITableView * tableView;
 
-- (void)loadedNextPage:(NSUInteger)rows;
+- (void)nextPageIsReady:(NSRange)rangeOfNextPage;
 
 @end
 
@@ -105,13 +114,9 @@
 
 @required
 
-// Called when a the tableView is scrolled into the buffer.
-- (void)pagingControllerBufferNeedsNextPage:(CRFPagingController *)dataSource;
-
-// Called when the triggerCell ("more button") is selected.
-- (void)pagingControllerDidTriggerNextPage:(CRFPagingController *)dataSource;
+- (void)pagingControllerLoadNextPage:(CRFPagingController *)pagingController;
 
 // Delegates should return YES if there are more pages to load.
-- (BOOL)pagingControllerDoesHaveNextPage:(CRFPagingController *)dataSource;
+- (BOOL)pagingControllerDoesHaveNextPage:(CRFPagingController *)pagingController;
 
 @end

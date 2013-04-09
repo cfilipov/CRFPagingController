@@ -30,7 +30,7 @@
 //  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-//  ////////////////////////////////////////////////////////////////////////////
+//  // // // // // // // // // // // // // // // // // // // // // // // // //
 //
 //  CRFPagingCellView is the default implementation of the CRFPagingCell
 //  protocol. The CRFPagingController uses a UITableViewCell instance which

@@ -31,11 +31,9 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "AppDelegate.h"
+#import "MainViewController.h"
 #import "DataSource.h"
 #import "CRFPagingController.h"
-#import "CRFShakeDetectingWindow.h"
-#import "MainViewController.h"
 
 #define kToolbarLabelFont [UIFont boldSystemFontOfSize:20]
 #define kShadowOffset     CGSizeMake(-0.5, -0.5)
@@ -43,14 +41,62 @@
 #define kLoadDelay        1.0
 #define kRowBufferSize    1
 
-@implementation AppDelegate
+@interface MainViewController ()
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+@end
+
+@implementation MainViewController
+
+- (id)init
 {
-//    self.mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-    self.window.rootViewController = self.mainViewController;
-    [self.window makeKeyAndVisible];
-    return YES;
+    self = [super initWithNibName:@"MainViewController" bundle:nil];
+    if (self) { }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [self.dataSource load];
+    [self switchValueChanged:self.autoLoadSwitch];
+}
+
+- (IBAction)stepperValueChanged:(UIStepper *)sender
+{
+    self.pagingController.bufferSize = sender.value;
+    self.bufferSizeBarItem.title = [NSString stringWithFormat:@"%d", (NSInteger)sender.value];
+}
+
+- (IBAction)switchValueChanged:(UISwitch *)sender
+{
+    self.pagingController.autoLoad = sender.on;
+    self.bufferStepper.enabled = sender.on;
+    self.bufferSizeLabel.enabled = sender.on;
+    self.bufferSizeValueLabel.enabled = sender.on;
+}
+
+- (void)windowDidShake;
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reset Demo?"
+                                                    message:@"Reset this demo to its initial state?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self.autoLoadSwitch setOn:NO animated:YES];
+        [self switchValueChanged:self.autoLoadSwitch];
+        [self.bufferStepper setValue:0];
+        [self stepperValueChanged:self.bufferStepper];
+        [self.dataSource reset];
+        [self.dataSource load];
+        [self.tableView reloadData];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 @end

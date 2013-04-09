@@ -58,12 +58,16 @@
 
 @interface CRFPagingController ()
 
-@property (nonatomic, assign) NSInteger  numberOfRows;
-@property (nonatomic, assign) BOOL       hasNextPage;
-@property (nonatomic, assign) BOOL       showTriggerCell;
-@property (nonatomic, assign) BOOL       isLoading;
+@property (nonatomic, assign) NSInteger numberOfRows;
+@property (nonatomic, assign) NSInteger numberOfDataRows;
+@property (nonatomic, assign) BOOL      hasNextPage;
+@property (nonatomic, assign) BOOL      showTriggerCell;
+@property (nonatomic, assign) BOOL      isLoading;
 
 - (BOOL)isTriggerCellAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)bufferNeedsData;
+- (void)loadNextPage;
+- (void)showOrHideTriggerCell;
 
 @end
 
@@ -81,17 +85,15 @@
 
 #pragma mark Public Methods
 
-- (void)loadedNextPage:(NSUInteger)rows;
+- (void)nextPageIsReady:(NSRange)rangeOfNextPage;
 {
     assert(self.tableView != nil);
     
-    self.isLoading = NO;
-    [self.triggerCell setLoading:NO animated:YES];
+    NSLog(@"Loaded %d items.", rangeOfNextPage.length);
     
-    NSUInteger insertIdx = self.showTriggerCell ? self.numberOfRows-1 : self.numberOfRows;
-    NSRange range = NSMakeRange(insertIdx, rows);
+    NSArray *indexPaths = [NSIndexPath indexPathsForRange:rangeOfNextPage];
     [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:[NSIndexPath indexPathsForRange:range] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
 }
 
@@ -103,9 +105,57 @@
     return indexPath.row == triggerIndex;
 }
 
+- (BOOL)bufferNeedsData;
+{
+    if (self.bufferSize == 0 || !self.autoLoad || !self.hasNextPage)
+    {
+        return NO;
+    }
+    
+    NSArray *visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
+    NSIndexPath *indexPath = visibleIndexPaths.lastObject;
+    NSInteger buffer = self.numberOfDataRows-indexPath.row;
+    
+    return buffer < self.bufferSize;
+}
+
+- (void)loadNextPage;
+{
+    if (self.isLoading)
+    {
+        return;
+    }
+    
+    self.isLoading = YES;
+    [self.triggerCell setLoading:YES animated:YES];
+    [self.delegate pagingControllerLoadNextPage:self];
+}
+
+- (void)showOrHideTriggerCell;
+{
+    [self.tableView beginUpdates];
+    
+    if (self.hasNextPage)
+    {
+        NSRange range = NSMakeRange(self.numberOfRows, 1);
+        self.showTriggerCell = YES;
+        NSArray *paths = [NSIndexPath indexPathsForRange:range];
+        [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else if (self.showTriggerCell)
+    {
+        NSRange range = NSMakeRange(self.numberOfRows-1, 1);
+        self.showTriggerCell = NO;
+        NSArray *paths = [NSIndexPath indexPathsForRange:range];
+        [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
+    [self.tableView endUpdates];
+}
+
 #pragma mark Override Synthesized Methods
 
-- (UITableViewCell *)triggerCell;
+- (UITableViewCell *)triggerCell
 {
     if (_triggerCell == nil)
     {
@@ -113,6 +163,11 @@
     }
     
     return _triggerCell;
+}
+
+- (NSInteger)numberOfRows
+{
+    return self.showTriggerCell ? self.numberOfDataRows+1 : self.numberOfDataRows;
 }
 
 #pragma mark UITableViewDataSource Optional Methods
@@ -132,35 +187,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //
-    // Check if this is a trigger cell, if so, trigger a page load.
-    //
-    if (self.hasNextPage && !self.isLoading)
-    {
-        //
-        // Users of this class should ensure the triggerCount is less than the
-        // size of a page. To guard against this, default to using the trigger
-        // cell as a trigger if triggerCount is too large.
-        //
-        NSInteger triggerIndex = self.numberOfRows-self.buffer;
-        if (triggerIndex < indexPath.row)
-        {
-            triggerIndex = self.numberOfRows-1;
-        }
-        
-        if (triggerIndex == indexPath.row)
-        {
-            self.isLoading = YES;
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.triggerCell setLoading:YES animated:YES];
-                
-                NSLog(@"Buffering page at index %d", triggerIndex);
-                
-                [self.delegate pagingControllerBufferNeedsNextPage:self];
-            }];
-        }
-    }
-
     if ([self isTriggerCellAtIndexPath:indexPath])
     {
         return self.triggerCell;
@@ -174,37 +200,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     self.tableView = tableView;
-    self.numberOfRows = [self.tableViewDataSource tableView:tableView numberOfRowsInSection:section];
+    self.numberOfDataRows = [self.tableViewDataSource tableView:tableView numberOfRowsInSection:section];
     self.hasNextPage = [self.delegate pagingControllerDoesHaveNextPage:self];
-    self.numberOfRows += self.showTriggerCell ? 1 : 0;
     
-    NSLog(@"\tself.numberOfRows = %d", self.numberOfRows);
-    
-    //
-    // Display the trigger cell if necessary. Do this after numberOfRowsInSection
-    // has completed (hence the need to append it to the main operation queue).
-    //
-    if (self.hasNextPage != self.showTriggerCell && !self.isLoading)
-    {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [tableView beginUpdates];
-            
-            if (self.hasNextPage)
-            {
-                self.showTriggerCell = YES;
-                NSArray *paths = [NSIndexPath indexPathsForRange:NSMakeRange(self.numberOfRows, 1)];
-                [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-            else if (self.showTriggerCell)
-            {
-                self.showTriggerCell = NO;
-                NSArray *paths = [NSIndexPath indexPathsForRange:NSMakeRange(self.numberOfRows-1, 1)];
-                [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-            
-            [tableView endUpdates];
-        }];
-    }
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (self.hasNextPage != self.showTriggerCell)
+        {
+            [self showOrHideTriggerCell];
+        }
+        
+        if ([self bufferNeedsData])
+        {
+            [self loadNextPage];
+        }
+    }];
+
+    [self.triggerCell setLoading:NO animated:YES];
+    self.isLoading = NO;
     
     return self.numberOfRows;
 }
@@ -216,25 +228,32 @@
 // if the target responds to the selector before sending a message.
 //
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    if ([self isTriggerCellAtIndexPath:indexPath] && !self.isLoading)
+    if ([self bufferNeedsData])
     {
-        self.isLoading = YES;
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self.triggerCell setLoading:YES animated:YES];
-        [self.delegate pagingControllerDidTriggerNextPage:self];
+        [self loadNextPage];
     }
-    else
+    else if ([self isTriggerCellAtIndexPath:indexPath] && self.autoLoad)
     {
-        if ([self.tableViewDelegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)])
-        {
-            [self.tableViewDelegate tableView:tableView didSelectRowAtIndexPath:indexPath];
-        }
-        else
-        {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        }
+        [self loadNextPage];
+    }
+    else if ([self.tableViewDelegate respondsToSelector:@selector(tableView:willDisplayCell:forRowAtIndexPath:)])
+    {
+        [self.tableViewDelegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:didEndDisplayingCell:forRowAtIndexPath:)])
+    {
+        [self.tableViewDelegate tableView:tableView didEndDisplayingCell:cell forRowAtIndexPath:indexPath];
     }
 }
 
@@ -251,6 +270,165 @@
     }
     
     return tableView.rowHeight;
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:accessoryButtonTappedForRowWithIndexPath:)])
+    {
+        [self.tableViewDelegate tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return YES;
+    }
+    
+    if ([self.tableView respondsToSelector:@selector(tableView:shouldHighlightRowAtIndexPath:)])
+    {
+        [self.tableViewDelegate tableView:tableView shouldHighlightRowAtIndexPath:indexPath];
+    }
+    
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:didHighlightRowAtIndexPath:)])
+    {
+        [self.tableViewDelegate tableView:tableView didHighlightRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:didUnhighlightRowAtIndexPath:)])
+    {
+        [self.tableViewDelegate tableView:tableView didUnhighlightRowAtIndexPath:indexPath];
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return indexPath;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)])
+    {
+        return [self.tableViewDelegate tableView:tableView willSelectRowAtIndexPath:indexPath];
+    }
+    
+    return indexPath;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return indexPath;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:willDeselectRowAtIndexPath:)])
+    {
+        return [self.tableViewDelegate tableView:tableView willDeselectRowAtIndexPath:indexPath];
+    }
+    
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self loadNextPage];
+    }
+    else if ([self.tableViewDelegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)])
+    {
+        [self.tableViewDelegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
+    else
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:didDeselectRowAtIndexPath:)])
+    {
+        [self.tableViewDelegate tableView:tableView didDeselectRowAtIndexPath:indexPath];
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return UITableViewCellEditingStyleNone;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:editingStyleForRowAtIndexPath:)])
+    {
+        return [self.tableViewDelegate tableView:tableView editingStyleForRowAtIndexPath:indexPath];
+    }
+    
+    return UITableViewCellEditingStyleNone;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return 0;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:indentationLevelForRowAtIndexPath:)])
+    {
+        return [self.tableViewDelegate tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+    }
+    
+    return 0;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if ([self isTriggerCellAtIndexPath:indexPath])
+    {
+        return NO;
+    }
+    
+    if ([self.tableViewDelegate respondsToSelector:@selector(tableView:shouldShowMenuForRowAtIndexPath:)])
+    {
+        return [self.tableViewDelegate tableView:tableView shouldShowMenuForRowAtIndexPath:indexPath];
+    }
+    
+    return NO;
 }
 
 #pragma mark Forward SEL Targets

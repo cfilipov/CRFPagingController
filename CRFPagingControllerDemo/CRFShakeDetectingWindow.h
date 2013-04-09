@@ -31,26 +31,21 @@
 //  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "AppDelegate.h"
-#import "DataSource.h"
-#import "CRFPagingController.h"
-#import "CRFShakeDetectingWindow.h"
-#import "MainViewController.h"
+#import <UIKit/UIKit.h>
 
-#define kToolbarLabelFont [UIFont boldSystemFontOfSize:20]
-#define kShadowOffset     CGSizeMake(-0.5, -0.5)
-#define kPageSize         8
-#define kLoadDelay        1.0
-#define kRowBufferSize    1
+@protocol CRFShakeResponder <NSObject>
 
-@implementation AppDelegate
+@optional
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-//    self.mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-    self.window.rootViewController = self.mainViewController;
-    [self.window makeKeyAndVisible];
-    return YES;
-}
+- (void)windowDidShake;
 
 @end
+
+////////////////////////////////////////////////////////////////////////////////
+
+@interface CRFShakeDetectingWindow : UIWindow
+
+@property (nonatomic, weak) IBOutlet id<CRFShakeResponder> shakeResponder;
+
+@end
+

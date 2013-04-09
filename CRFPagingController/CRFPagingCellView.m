@@ -52,7 +52,6 @@
 {
     if (loading)
     {
-        NSLog(@"selected");
         self.accessoryView = self.activityIndicator;
         [self.activityIndicator startAnimating];
         self.activityIndicator.alpha = 1.0f;
@@ -60,7 +59,6 @@
     }
     else
     {
-        NSLog(@"deselected");
         self.activityIndicator.alpha = 0.0f;
         [self.activityIndicator stopAnimating];
         self.textLabel.text = self.moreText;

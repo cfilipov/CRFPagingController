@@ -32,19 +32,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CRFShakeDetectingWindow.h"
 
 @class CRFPagingController;
 @class DataSource;
+@class MainViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic, strong) UIWindow               * window;
-@property (nonatomic, strong) CRFPagingController    * pagingController;
-@property (nonatomic, strong) UINavigationController * navigationController;
-@property (nonatomic, strong) UITableViewController  * mainViewController;
-@property (nonatomic, strong) DataSource             * dataSource;
-
-- (void)toggleInfiniteScroll:(id)sender;
-- (void)configureToolbar;
+@property (nonatomic, strong) IBOutlet UIWindow           * window;
+@property (nonatomic, strong) IBOutlet MainViewController * mainViewController;
 
 @end
