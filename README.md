@@ -9,12 +9,6 @@ by implementing the UITableViewDataSource protocol and forwarding methods to a
 "real" data source. This allows one to easily enable table view paging by simply 
 placing this controller between the data source and table view.
 
-Installation
-------------
-
-Copy the files under the CRFPagingController directory into your project, adding 
-them to your target.
-
 Usage
 -----
 
@@ -47,9 +41,9 @@ Configure the CRFPagingController:
 
     self.pagingController.buffer = 5;
 
-IMPORTANT: Because UITableViews cache results from `-respondsToSelector:` you MUST 
-set the tableViewDataSource and tableViewDelegate properties of this class 
-BEFORE you set the dataSource and delegate properties of the UITableView.
+IMPORTANT: You MUST set the tableViewDataSource and tableViewDelegate 
+properties of this class BEFORE you set the dataSource and delegate 
+properties of the UITableView.
 
 License
 -------
